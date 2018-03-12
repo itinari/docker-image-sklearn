@@ -17,12 +17,12 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build -t itinari/docker-image-sklearn .
+            docker build -t itinari/sklearn .
 
       - deploy:
           name: Push docker image to docker-hub (master branch only)
           command: |
             test "$CIRCLE_BRANCH" = "master" || test "$CIRCLE_BRANCH" = "dev" || exit 0
             echo "{\"https://index.docker.io/v1/\":{\"auth\":\"<AUTH>\",\"email\":\"<EMAIL>\"}}" | sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" > ~/.dockercfg
-            docker tag itinari/docker-image-sklearn itinari/docker-image-sklearn:v$CIRCLE_BUILD_NUM
-            docker push itinari/docker-image-sklearn
+            docker tag itinari/sklearn itinari/sklearn:v$CIRCLE_BUILD_NUM
+            docker push itinari/sklearn
