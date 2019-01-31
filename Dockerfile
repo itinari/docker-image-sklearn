@@ -1,4 +1,4 @@
-FROM python:2.7-alpine3.7
+FROM python:2.7-alpine3.8
 
 RUN apk --no-cache add lapack libstdc++ && \ 
   apk --no-cache add --virtual .builddeps gcc g++ gfortran musl-dev lapack-dev && \
